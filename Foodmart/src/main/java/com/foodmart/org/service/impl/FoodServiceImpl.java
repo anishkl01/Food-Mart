@@ -26,7 +26,6 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
 @Service
-
 public class FoodServiceImpl implements FoodService{
 	
 	@Autowired
@@ -56,7 +55,7 @@ public class FoodServiceImpl implements FoodService{
 			if(objectResponse.sdkHttpResponse().isSuccessful()) {
 				return "https://"+bucketName+".s3.amazonaws.com/"+key;
 			} else {
-				System.out.println("eroor");
+			
 				throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"File upload failed.");
 			}
 			

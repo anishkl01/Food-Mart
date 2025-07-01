@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +22,8 @@ import com.foodmart.org.service.FoodService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.AllArgsConstructor;
-
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/foods")
 public class FoodController {
 	
@@ -35,12 +35,15 @@ public class FoodController {
 	public FoodResponse addFood(@RequestPart("food") String food
 			,@RequestPart("file") MultipartFile file) {
 		
+		System.out.println("Received JSON: " + food);
+	    System.out.println("Received file: " + file.getOriginalFilename());
+		
 		ObjectMapper mapper = new ObjectMapper();
 		FoodRequest request = null;
 		
 		try {
 			 request = mapper.readValue(food, FoodRequest.class);			
-			
+			 System.out.println("Parsed Object: " + request);
 		} catch (JsonProcessingException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Invalid JSON Format");
 		}
