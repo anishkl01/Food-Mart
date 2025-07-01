@@ -5,7 +5,7 @@ import Menubar from "./components/Menubar/Menubar";
 import AddFood from "./pages/AddFood/AddFood";
 import ListFood from "./pages/ListFood/ListFood";
 import Orders from "./pages/Orders/Orders";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 const App = () => {
   const [sidebarVisible, setSidebarVisible] = useState(true);
